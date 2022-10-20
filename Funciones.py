@@ -46,10 +46,10 @@ model.add(Dense(1, activation='linear'))
 model.summary()
 
 model.compile(optimizer=RMSprop(),metrics=['loss'])
-x=tf.linspace(-2,2,100)
+x=tf.linspace(-1,1,100)
 history = model.fit(x, epochs=3000, verbose=1)
 
-x_testv = tf.linspace(-2,2,100)
+x_testv = tf.linspace(-1,1,100)
 a=model.predict(x_testv)
 plt.plot(x_testv,a)
 plt.plot(x_testv,3 * np.sin(np.pi * x))
