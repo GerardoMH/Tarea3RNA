@@ -54,7 +54,7 @@ model.add(Dense(1, activation='linear'))
 
 model.summary()
 
-model.compile(optimizer=Adam(learning_rate=0.0001 ),metrics=['loss'])
+model.compile(optimizer=Adam(),metrics=['loss'])
 x=tf.linspace(-5,5,1000)
 history = model.fit(x, epochs=3000, verbose=1)
 
