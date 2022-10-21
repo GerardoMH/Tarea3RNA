@@ -42,20 +42,29 @@ class ODEsolver(Sequential):
 			return {"loss": self.loss_tracker.result()}
 
 model = ODEsolver()
-model.add(Dense(10, activation='tanh', input_shape=(1,)))
-model.add(Dense(1, activation='tanh'))
+model.add(Dense(100, activation='tanh', input_shape=(1,)))
+model.add(Dense(10, activation='tanh'))
+model.add(Dense(10, activation='tanh'))
+model.add(Dense(10, activation='tanh'))
+model.add(Dense(10, activation='tanh'))
+model.add(Dense(10, activation='tanh'))
+model.add(Dense(10, activation='tanh'))
+model.add(Dense(10, activation='tanh'))
 model.add(Dense(1, activation='linear'))
 
 model.summary()
 
-model.compile(optimizer=RMSprop(),metrics=['loss'])
-x=tf.linspace(-5,5,100)
-history = model.fit(x, epochs=500, verbose=1)
+model.compile(optimizer=Adam(learning_rate=0.0001 ),metrics=['loss'])
+x=tf.linspace(-5,5,1000)
+history = model.fit(x, epochs=3000, verbose=1)
 
-x_testv = tf.linspace(-5,5,100)
+x_testv = tf.linspace(-5,5,1000)
 a=model.predict(x_testv)
 plt.plot(x_testv,a)
-plt.plot(x_testv, x*np.sin(x)+2*(-x*tf.math.cos(x)+np.sin(x))/x)
+plt.plot(x_testv, x*np.sin(x)+2*np.cos(x)-2*np.sin(x)/x)
+plt.suptitle('Solución primera Ec Diferencial')
+leyendas = ['RNA[y(x)]','y(x)']
+plt.legend(loc = "upper right", labels = leyendas)
 plt.show()
 exit()
 
